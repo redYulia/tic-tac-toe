@@ -31,33 +31,45 @@ class TicTacToe {
     }
 
     isFinished() {
-        var gameFinished = false;
-        for (var i=0; i<3; i++) {
-            /*console.log(this.field[i][0]);
-            console.log(this.field[i][1]);
-            console.log(this.field[i][2]);*/
-            
-            if (this.field[i][0] == this.field[i][1] && this.field[i][0] == this.field[i][2] && this.field[i][0]!== null) {
-                 gameFinished = true;
-                /*console.log("hor win");*/
-            }
-            
-            else if (this.field[0][i] == this.field[1][i] && this.field[0][i] == this.field[2][i] && this.field[i][0]!== null) {
-                    gameFinished = true;
-                    /*console.log("vert win");*/
-            }
-            else {
-                for (var j=0; j<3; j++) {
-                    
-                }
-            }
-            
+        if ((this.getWinner() !== null) || (this.isDraw() == true)) {
+            return true;
         }
-        return gameFinished;
+        else return false;
+        
     }
 
     getWinner() {
+        var x = this.field;
+        
+        
+        if ((x[1][1] == x[0][0] && x[1][1] == x[2][2] && x[1][1]!== null) || (x[1][1] == x[2][0] && x[1][1] == x[0][2] && x[1][1]!== null)) {
+                    /*console.log("win", x[1][1]);*/
+                    return x[1][1];
+            }
+        else {
+            for (var i=0; i<3; i++) {
+            
+                /*console.log("========");
+                console.log(x[i][0], x[i][1], x[i][2]);
+                console.log("========");*/
 
+                if (x[i][0] == x[i][1] && x[i][0] == x[i][2] && x[i][0]!== null) {
+                        /*console.log("win", x[i][0]);*/
+                        return x[i][0];
+                    }
+                else if (x[0][i] == x[1][i] && x[0][i] == x[2][i] && x[0][i]!== null) {
+                        /*console.log("win", x[0][i]);*/
+                        return x[0][i];
+                    }
+                else {}
+            }
+            return null;
+            
+            
+            
+            
+        }
+        
     }
 
     noMoreTurns() {
@@ -76,6 +88,10 @@ class TicTacToe {
     }
 
     isDraw() {
+        if ((this.getWinner() == null) && (this.noMoreTurns() == true)) {
+            return true;
+        }
+        else return false;
 
     }
 
@@ -87,9 +103,48 @@ class TicTacToe {
     }
 }
 
-/*
-var game1 = new TicTacToe();
+
+/*var game1 = new TicTacToe();
 console.log("begiiiiiin", game1.getCurrentPlayerSymbol());
+game1.nextTurn(1, 1)
+            console.log("field value=",game1.field, game1.getWinner());
+
+            game1.nextTurn(2, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 0)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(2, 1)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(2, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(0, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(2, 2)
+            console.log("field value=",game1.getWinner(),game1.field);
+
+            game1.nextTurn(1, 2)
+            console.log("field value=",game1.getWinner(),game1.field);*/
+/*
 game1.nextTurn(0, 1);
 console.log("field value=", game1.getFieldValue(0,1));
 console.log(game1.getCurrentPlayerSymbol());
