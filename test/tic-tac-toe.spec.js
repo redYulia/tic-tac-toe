@@ -1,3 +1,5 @@
+"use strict";
+
 const TicTacToe = require('../src/tic-tac-toe.js');
 
 describe('TicTacToe', () => {
