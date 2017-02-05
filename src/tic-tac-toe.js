@@ -2,25 +2,19 @@
 
 class TicTacToe {
     constructor() {
-        this.currentPlayer = 0;
         this.field = [[null,null,null], [null,null,null], [null,null,null]];
+        this.playerCount = 0;
     }
 
     getCurrentPlayerSymbol() {
-        if (this.currentPlayer == 0) return 'x';
+        if (this.playerCount % 2 == 0) return 'x';
         else return 'o';
     }
 
     nextTurn(rowIndex, columnIndex) {
         if (this.field[rowIndex][columnIndex] == null) {
-            if (this.currentPlayer == 0) {
-                this.field[rowIndex][columnIndex] = 'x';
-                this.currentPlayer = 1; 
-            }
-            else {
-                this.field[rowIndex][columnIndex] = 'o';
-                this.currentPlayer = 0;
-            }
+            this.field[rowIndex][columnIndex] = this.getCurrentPlayerSymbol();
+            this.playerCount++;
         }
     }
 
